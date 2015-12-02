@@ -252,6 +252,8 @@ public:
     @param missch The character used to specify missing measurements. It should not be a digit.
         Although it's a non-numerical value, it surely does not affect the decision of whether the
         variable ordered or categorical.
+    @note If the dataset only contains input variables and no responses, use responseStartIdx = -2
+        and responseEndIdx = 0. The output variables vector will just contain zeros.
      */
     static Ptr<TrainData> loadFromCSV(const String& filename,
                                       int headerLineCount,
@@ -1479,10 +1481,6 @@ public:
 @param samples returned samples array
 */
 CV_EXPORTS void randMVNormal( InputArray mean, InputArray cov, int nsamples, OutputArray samples);
-
-/** @brief Generates sample from gaussian mixture distribution */
-CV_EXPORTS void randGaussMixture( InputArray means, InputArray covs, InputArray weights,
-                                  int nsamples, OutputArray samples, OutputArray sampClasses );
 
 /** @brief Creates test set */
 CV_EXPORTS void createConcentricSpheresTestSet( int nsamples, int nfeatures, int nclasses,
